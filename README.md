@@ -3,8 +3,10 @@ Dotfiles for emacs, bspwm, sxhkd, polybar, mpd, ncmpcpp and a bunch of other stu
 
 
 ## Installation
-To install, simply clone the repository into a directory of your choice.
-```git clone https://github.com/yiqiaowang/dotfiles .dotfiles```
+To install, simply clone the repository into a directory of your choice.  
+```
+git clone https://github.com/yiqiaowang/dotfiles .dotfiles
+```
 
 Then, [ Do something to symlink to the correct places ] . _Not yet implemented_
 
