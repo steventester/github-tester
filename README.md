@@ -19,4 +19,4 @@ After this is completed, ensure that everything in the following checklist is sa
 1. Lean up zshrc
 2. Setup dotfile management
 3. [Emacs] Rust, R and python environments and ripgrep plugin
-4. Setup gnome keyring and ssh keys
+4. Setup gnome keyring and ssh keys (see [gnome keyring](https://wiki.archlinux.org/index.php/GNOME/Keyring) and [pam](https://wiki.archlinux.org/index.php/PAM))
