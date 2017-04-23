@@ -16,4 +16,5 @@ After this is completed, ensure that everything in the following checklist is sa
 
 
 ## TODOs
-1. 
+1. Lean up zshrc
+2. Setup dotfile management
