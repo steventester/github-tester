@@ -1,5 +1,5 @@
 # dotfiles
-Dotfiles for emacs, bspwm, sxhkd, polybar, mpd, ncmpcpp and a bunch of other stuff
+Dotfiles for emacs, bspwm, sxhkd, polybar, mpd, ncmpcpp, zsh and a bunch of other stuff
 
 
 ## Installation
