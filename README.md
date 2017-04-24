@@ -21,5 +21,5 @@ After this is completed, ensure that everything in the following checklist is sa
 3. [Emacs] Rust, R and python environments and ripgrep plugin
 4. Setup gnome keyring and ssh keys (see [gnome keyring](https://wiki.archlinux.org/index.php/GNOME/Keyring) and [pam](https://wiki.archlinux.org/index.php/PAM))
 5. Setup Security (look [here](https://wiki.archlinux.org/index.php/List_of_applications/Security))
-   - password management
+   - password management [here](https://nickjanetakis.com/blog/managing-your-passwords-on-the-command-line-in-linux-with-pass) and [here](https://wiki.archlinux.org/index.php/Pass)
    - Setup lockscreen [here](https://github.com/google/xsecurelock)
