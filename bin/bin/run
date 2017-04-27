@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+if [ $# -eq 0 ]; then
+	    echo "Error: no command provided."
+	        exit 1
+	fi
+
+eval "nohup $* >/dev/null 2>&1 &"

@@ -1,21 +1,16 @@
 # dotfiles
-Dotfiles for emacs, bspwm, sxhkd, polybar, mpd, ncmpcpp, zsh and a bunch of other stuff
-
+Dotfiles for emacs, bspwm, sxhkd, polybar, rofi, mpd, ncmpcpp, zsh and a bunch of other stuff
 
 ## Installation
 To install, simply clone the repository into a directory of your choice.  
 ```
 git clone https://github.com/yiqiaowang/dotfiles .dotfiles
 ```
+Then, run ```./dotfiles/init.sh``` to symlink the files.
 
-Then, [ Do something to symlink to the correct places ] . _Not yet implemented_
-
-After this is completed, ensure that everything in the following checklist is satisfied.  
 #### Post installation checklist
+Ensure that everything in the following checklist is satisfied.  
 1. Set the MONITOR environment variable to equal the name of the monitor you wish polybar to appear on. Find out with xrandr.
-
-
-
 
 
 #### Documentation
@@ -25,7 +20,7 @@ After this is completed, ensure that everything in the following checklist is sa
 
 ## TODOs
 1. Lean up zshrc
-2. Setup dotfile management
+2. Write a nice script for symlink initialization (for stow).
 3. [Emacs] Rust, R and python environments and ripgrep plugin.
    - setup daemon emacs.
    - consider tmux
