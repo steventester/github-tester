@@ -15,6 +15,13 @@ After this is completed, ensure that everything in the following checklist is sa
 1. Set the MONITOR environment variable to equal the name of the monitor you wish polybar to appear on. Find out with xrandr.
 
 
+
+
+
+#### Documentation
+1. Read [this](https://alexcabal.com/creating-the-perfect-gpg-keypair/) for creating GPG keys.
+2. Read [this](https://wiki.archlinux.org/index.php/Pass) and [this](https://sanctum.geek.nz/arabesque/linux-crypto-passwords/)(more detailed) for information about ```pass```.
+
 ## TODOs
 1. Lean up zshrc
 2. Setup dotfile management
@@ -22,7 +29,3 @@ After this is completed, ensure that everything in the following checklist is sa
    - setup daemon emacs.
    - consider tmux
    - consider running all shells within emacs
-4. Setup gnome keyring and ssh keys (see [gnome keyring](https://wiki.archlinux.org/index.php/GNOME/Keyring) and [pam](https://wiki.archlinux.org/index.php/PAM))
-5. Setup Security - look [here](https://wiki.archlinux.org/index.php/List_of_applications/Security)
-   - password management [here](https://nickjanetakis.com/blog/managing-your-passwords-on-the-command-line-in-linux-with-pass) and [here](https://wiki.archlinux.org/index.php/Pass)
-   - Setup lockscreen
