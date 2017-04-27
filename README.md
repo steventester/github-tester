@@ -2,11 +2,13 @@
 Dotfiles for emacs, bspwm, sxhkd, polybar, rofi, mpd, ncmpcpp, zsh and a bunch of other stuff
 
 ## Installation
-To install, simply clone the repository into a directory of your choice.  
-```
-git clone https://github.com/yiqiaowang/dotfiles .dotfiles
-```
-Then, run ```./dotfiles/init.sh``` to symlink the files.
+1. Install GNU Stow however you wish.
+
+2. To complete the installation, clone the repository into a directory of your choice.  
+   ```
+   git clone https://github.com/yiqiaowang/dotfiles .dotfiles
+   ```
+   Then, run ```./dotfiles/init.sh``` to symlink the files.
 
 #### Post installation checklist
 Ensure that everything in the following checklist is satisfied.  
