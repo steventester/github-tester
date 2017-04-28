@@ -13,7 +13,7 @@ Dotfiles for emacs, bspwm, sxhkd, polybar, rofi, mpd, ncmpcpp, zsh and a bunch o
 #### Post installation checklist
 Ensure that everything in the following checklist is satisfied.  
 1. Set the MONITOR environment variable to equal the name of the monitor you wish polybar to appear on. Find out with xrandr.
-2. To enable gpg-agent on boot run ```systemctl --user enable gpg-agent.socket``` and ```systemctl --user enable dirmngr.socket```. Read [this](https://wiki.archlinux.org/index.php/GnuPG#Start_gpg-agent_with_systemd_user) for more details.
+2. To enable gpg-agent on boot run ```systemctl --user enable gpg-agent-ssh.socket``` and ```systemctl --user enable dirmngr.socket```. Read [this](https://wiki.archlinux.org/index.php/GnuPG#Start_gpg-agent_with_systemd_user) for more details. Note that the recommended service to start in the previous link may not work for you. Try both ```gpg-agent.socket``` and ```gpg-agent-ssh.socket```.
 3. To enable a lockscreen on wake from suspend, copy the contents of [this](https://gist.github.com/yiqiaowang/df90ddcb4e7900f626421f505acdce67) gist into a file called ```lock-on-wake.service``` in ```/etc/systemd/system/```. Then run ```systemctl enable lock-on-wake```.
 
 #### Documentation
