@@ -21,7 +21,7 @@ Ensure that everything in the following checklist is satisfied.
 2. Read [this](https://wiki.archlinux.org/index.php/Pass) and [this](https://sanctum.geek.nz/arabesque/linux-crypto-passwords/) (more detailed) for information about ```pass```.
 3. Read [this](https://wiki.archlinux.org/index.php/SSH_keys) for information about SSH keys.
 4. We use gpg-agent to as an ssh agent. Read [this](https://wiki.archlinux.org/index.php/GnuPG#SSH_agent) for more information.
-
+   - Note if gpg-agent just doesnt seem to want to work, try this ```echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2&>1```.
 ## TODOs
 1. Lean up zshrc
 2. Write a nice script for symlink initialization (for stow).
