@@ -39,7 +39,6 @@ Ensure that everything in the following checklist is satisfied.
    WantedBy=suspend.target
    ```
    Then enable the service with `systemctl enable lock-on-wake`. Of course, replace `lock-on-wake` with whatever you named your service.
-
 #### Documentation
 1. Read [this](https://alexcabal.com/creating-the-perfect-gpg-keypair/) for creating GPG keys.
 2. Read [this](https://wiki.archlinux.org/index.php/Pass) and [this](https://sanctum.geek.nz/arabesque/linux-crypto-passwords/) (more detailed) for information about `pass`.
