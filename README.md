@@ -19,8 +19,8 @@ Ensure that everything in the following checklist is satisfied.
 #### Documentation
 1. Read [this](https://alexcabal.com/creating-the-perfect-gpg-keypair/) for creating GPG keys.
 2. Read [this](https://wiki.archlinux.org/index.php/Pass) and [this](https://sanctum.geek.nz/arabesque/linux-crypto-passwords/) (more detailed) for information about ```pass```.
-3. Read [this](https://wiki.archlinux.org/index.php/SSH_keys) for information about SSH keys and ssh-agent.
-4. We use gpg-agent to as an ssh-agent. Read [this](https://wiki.archlinux.org/index.php/GnuPG#SSH_agent) for more information.
+3. Read [this](https://wiki.archlinux.org/index.php/SSH_keys) for information about SSH keys.
+4. We use gpg-agent to as an ssh agent. Read [this](https://wiki.archlinux.org/index.php/GnuPG#SSH_agent) for more information.
 
 ## TODOs
 1. Lean up zshrc
