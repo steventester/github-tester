@@ -29,3 +29,4 @@ Ensure that everything in the following checklist is satisfied.
    - setup daemon emacs.
    - consider tmux
    - consider running all shells within emacs
+4. Fix gpg-agent
