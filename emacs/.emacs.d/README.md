@@ -1,6 +1,5 @@
 ### TODO
 * setup bindings for auto yasnippet
-* counsel-projectile
 * slime and common lisp
 * disable company dabbrev in repls
 * https://github.com/tkf/emacs-jedi-direx
