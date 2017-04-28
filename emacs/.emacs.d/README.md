@@ -1,3 +1,6 @@
+# Emacs configuration
+
+
 ### TODO
 * setup bindings for auto yasnippet
 * slime and common lisp

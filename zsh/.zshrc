@@ -172,4 +172,4 @@ source ~/.zsh/ansiweather/ansiweather.plugin.zsh
 bindkey '^ ' autosuggest-accept
 
 ### Configure gpg-agent
-echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1
+gpg-connect-agent updatestartuptty /bye >/dev/null
