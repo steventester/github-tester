@@ -68,6 +68,7 @@ unsetopt ALL_EXPORT
 #############
 alias ll='ls -al'
 alias ls='ls --color=auto '
+alias clip='xclip -selection clip'
 
 ### Bind keys
 #############
@@ -169,13 +170,3 @@ source ~/.zsh/ansiweather/ansiweather.plugin.zsh
 
 ### Configure Plugins
 bindkey '^ ' autosuggest-accept
-
-
-
-### run ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh/ssh-agent
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh/ssh-agent)"
-fi

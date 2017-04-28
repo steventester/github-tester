@@ -13,7 +13,9 @@ Dotfiles for emacs, bspwm, sxhkd, polybar, rofi, mpd, ncmpcpp, zsh and a bunch o
 #### Post installation checklist
 Ensure that everything in the following checklist is satisfied.  
 1. Set the MONITOR environment variable to equal the name of the monitor you wish polybar to appear on. Find out with xrandr.
-
+2. To enable ssh-agent on boot run
+   ```systemctl --user enable ssh-agent```.
+3. To enable a lockscreen on wake from suspend, copy the contents of [this](https://gist.github.com/yiqiaowang/df90ddcb4e7900f626421f505acdce67) gist into a file called ```lock-on-wake.service``` in ```/etc/systemd/system/```. Then run ```systemctl enable lock-on-wake```.
 
 #### Documentation
 1. Read [this](https://alexcabal.com/creating-the-perfect-gpg-keypair/) for creating GPG keys.

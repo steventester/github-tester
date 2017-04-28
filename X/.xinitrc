@@ -10,7 +10,7 @@ fi
 
 xsetroot -cursor_name left_ptr
 mpd &
-nm-applet &
+# nm-applet &
 sxhkd & 
 urxvt &
 exec bspwm
