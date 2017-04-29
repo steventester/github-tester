@@ -10,6 +10,11 @@ super + Return
 super + @space
 	dmenu_run -h 30
 
+# passmenu
+super + shift + space
+	passmenu
+
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
