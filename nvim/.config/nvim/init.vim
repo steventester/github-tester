@@ -1,5 +1,5 @@
 "-------------------------------------"
-"  yiqiaowang's neovim configuration  "
+"yiqiaoaowang's neovim configuration  "
 "-------------------------------------"
 "   incompatible with vim (probably)  "
 
@@ -7,7 +7,7 @@
 " =====> Plugins
 "--------------------------------------
 " Setup vim.plug as needed
-call plug#begin('~/.local/share/nvim/site/autoload')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
@@ -86,11 +86,11 @@ set grepprg=rg\ --vimgrep
 " --no-ignore: Do not respect .gitignore, etc...
 " --hidden: Search hidden files and folders
 " --follow: Follow symlinks
-" --glob: Additional conditions for search \
-    (in this case ignore everything in the .git/ folder)
+" --glob: Additional conditions for search
+"   (in this case ignore everything in the .git/ folder)
 " --color: Search color options
-command! -bang -nargs=* Find call \
-fzf#vim#grep('rg --column --line-number \
---no-heading --fixed-strings --ignore-case \
---no-ignore --hidden --follow --glob "!.git/*" \
---color "always" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call
+	\ fzf#vim#grep('rg --column --line-number
+	\ --no-heading --fixed-strings --ignore-case
+	\ --no-ignore --hidden --follow --glob "!.git/*"
+	\ --color "always" '.shellescape(<q-args>), 1, <bang>0)
