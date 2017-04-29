@@ -17,6 +17,7 @@ setopt EXTENDED_HISTORY
 # setopt HASH_CMDS
 setopt MENUCOMPLETE
 setopt ALL_EXPORT
+setopt PROMPT_SUBST
 
 ### Set/unset  shell options
 ############################
@@ -24,6 +25,9 @@ setopt   notify globdots pushdtohome cdablevars autolist
 setopt   autocd recexact longlistjobs
 setopt   autoresume histignoredups pushdsilent 
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
+
+
+
 unsetopt bgnice autoparamslash
 
 ### Autoload zsh modules when they are referenced
@@ -57,12 +61,31 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
    (( count = $count + 1 ))
 done
 
+
+
+function minimal_vcs {
+	# git
+	local statc="%{\e[0;3${PS_GREEN}m%}" # assumes is clean
+	local bname="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
+
+	if [ -n "$bname" ]; then
+	    [ -n "$(git status --porcelain 2> /dev/null)" ] &&\
+		statc="%{\e[0;31${PS_RED}m%}"
+	    echo -n " $statc$bname%{\e[0m%}"
+	fi
+}
+
+
+
 ### Set prompt
 ##############
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
-PS1="[%(!.${PR_RED}%n.$PR_LIGHT_YELLOW%n)%(!.${PR_LIGHT_YELLOW}@.$PR_RED@)$PR_NO_COLOR%(!.${PR_LIGHT_RED}%U%m%u.${PR_LIGHT_GREEN}%U%m%u)$PR_NO_COLOR:%(!.${PR_RED}%2c.${PR_BLUE}%2c)$PR_NO_COLOR]%(?..[${PR_LIGHT_RED}%?$PR_NO_COLOR])%(!.${PR_LIGHT_RED}#.${PR_LIGHT_GREEN}$) "
-RPS1="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
+
+PS1='%(?..[${PR_LIGHT_RED}%?$PR_NO_COLOR])%(!.${PR_LIGHT_RED}#.${PR_LIGHT_GREEN} >) '
+
+RPS1='$(minimal_vcs) %(!.${PR_RED}%2c.${PR_BLUE}%2c)$PR_NO_COLOR'
 unsetopt ALL_EXPORT
+
 
 ### Set alias
 #############
