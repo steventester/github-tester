@@ -84,6 +84,45 @@
     )
   :diminish company-mode)
 
+
+(use-package ivy
+  :ensure t
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-height 10)
+  (setq ivy-count-format "")
+  ;; no regexp by default
+  (setq ivy-initial-inputs-alist nil)
+  ;; configure regexp engine.
+  (setq ivy-re-builders-alist
+	;; allow input not in order
+        '((t   . ivy--regex-ignore-order))))f
+
+  (use-package ivy-historian
+    :ensure t
+    (ivy-historian-mode))
+
+  (use-package swiper
+    :ensure t
+    :diminish swiper-mode)
+
+  (use-package counsel-projectile
+    :ensure t)
+
+  (use-package counsel
+    :ensure t
+    :bind (("M-x" . counsel-M-x)
+	   ("C-x C-f" . counsel-find-files)
+	   ("C-x C-b" . ivy-switch-buffer)
+	   ("C-x C-r" . counsel-recentf) 
+	   ("C-x C-g" . counsel-git-grep)
+	   ("C-x C-p" . counsel-projectile)
+	   ("C-s" . swiper)
+	   )
+    :diminish counsel-mode)
+:diminish ivy-mode)
+
 ;; vim emulation
 (use-package evil
   :ensure t
@@ -323,6 +362,7 @@
   
   ;; Limit Messages buffer max items
   (setq-default message-log-max 100)
-
+  
+  (global-auto-revert-mode 1)
+  (put 'dired-find-alternate-file 'disabled nil)
 ;;; init ends here
-(put 'dired-find-alternate-file 'disabled nil)
