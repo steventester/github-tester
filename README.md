@@ -55,7 +55,6 @@ Ensure that everything in the following checklist is satisfied.
    ```
 
 #### Todo
-1. Lean up zshrc
 2. Write a nice script for symlink initialization (for stow).
 3. [Emacs] Rust, R and python environments and ripgrep plugin.
    - setup daemon emacs.
