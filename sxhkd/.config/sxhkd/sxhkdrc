@@ -34,10 +34,10 @@ XF86AudioMute
 
 #### Backlight
 XF86MonBrightnessUp
-	xbacklight -inc 10
+	xbacklight -inc 5
 
 XF86MonBrightnessDown
-	xbacklight -dec 10
+	xbacklight -dec 5
 
 #### MPC/NCMPCPP
 

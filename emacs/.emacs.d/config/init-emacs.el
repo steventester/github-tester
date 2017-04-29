@@ -2,8 +2,8 @@
   (setq inhibit-startup-message t) ;;no more gnu startup page
   (tool-bar-mode -1) ;;hides toolbar
 
-  (setq initial-frame-alist '((font . "Terminus-10")))
-  (setq default-frame-alist '((font . "Terminus-10")))
+  (setq initial-frame-alist '((font . "xos4 Terminus-10")))
+  (setq default-frame-alist '((font . "xos4 Terminus-10")))
 
   ;; Don't use messages that you don't read
   (setq initial-scratch-message "")
