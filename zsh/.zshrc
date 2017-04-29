@@ -91,6 +91,7 @@ unsetopt ALL_EXPORT
 alias ll='ls -al'
 alias ls='ls --color=auto '
 alias clip='xclip -selection clip'
+alias nv='nvim'
 
 ### Bind keys
 #############
