@@ -93,37 +93,37 @@
     (setq helm-candidate-number-limit 100)
     ;; From https://gist.github.com/antifuchs/9238468
     (setq 
-      helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
-      helm-input-idle-delay 0.01  ; this actually updates things
-                                       ; reeeelatively quickly.
-      helm-yas-display-key-on-candidate t
-      helm-quick-update t
-      helm-M-x-requires-pattern nil
-      helm-ff-newfile-prompt-p nil
-      helm-ff-skip-boring-files t
+     helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
+     helm-input-idle-delay 0.01  ; this actually updates things
+					; reeeelatively quickly.
+     helm-yas-display-key-on-candidate t
+     helm-quick-update t
+     helm-M-x-requires-pattern nil
+     helm-ff-newfile-prompt-p nil
+     helm-ff-skip-boring-files t
      
      ;; Helm fuzzy settings 
-      helm-recentf-fuzzy-match t
-      helm-locate-fuzzy-match nil ;; locate fuzzy is worthless
-      helm-M-x-fuzzy-match t
-      helm-buffers-fuzzy-matching t
-      helm-semantic-fuzzy-match t
-      helm-apropos-fuzzy-match t
-      helm-imenu-fuzzy-match t
-      helm-lisp-fuzzy-completion t
-      helm-completion-in-region-fuzzy-match t	  
+     helm-recentf-fuzzy-match t
+     helm-locate-fuzzy-match nil ;; locate fuzzy is worthless
+     helm-M-x-fuzzy-match t
+     helm-buffers-fuzzy-matching t
+     helm-semantic-fuzzy-match t
+     helm-apropos-fuzzy-match t
+     helm-imenu-fuzzy-match t
+     helm-lisp-fuzzy-completion t
+     helm-completion-in-region-fuzzy-match t	  
 
-      helm-autoresize-min-height 10
-      helm-autoresize-max-height 35
-	  
-      )
-   )
+     helm-autoresize-min-height 10
+     helm-autoresize-max-height 35
+     
+     )
+    )
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
   (use-package helm-swoop
     :ensure t)
-	     
+  
   :bind (:map helm-find-files-map
               ("<tab>" . helm-execute-persistent-action)
 	      ("C-z" . helm-select-action)
@@ -134,12 +134,13 @@
          ("C-x C-b" . helm-buffers-list)
 	 ("C-x C-f" . helm-find-files)
 	 ("C-x C-r" . helm-recentf)
-	 ("C-x C-g" . helm-grep-do-git-grep)
+	 ;; ("C-x C-g" . helm-grep-do-git-grep)
+	 ("C-x C-g" . rg-project)
          ("C-s" . helm-swoop)
 	 ("C-x C-i" . helm-semantic-or-imenu)
 	 ("C-x C-u" . helm-resume )
          )
- 
+  
   )
 
 ;; vim emulation
@@ -251,18 +252,15 @@
   :defer t
   :commands (git-timemachine))
 
-(use-package fzf
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+  (add-hook 'prog-mode-hook #'aggressive-indent-mode)
+  :diminish aggressive-indent-mode)
+(use-package rg
   :ensure t
   )
-
-
-;; Don't use this for now
-;; (use-package aggressive-indent
-;;   :ensure t
-;;   :config
-;;   (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-;;   (add-hook 'prog-mode-hook #'aggressive-indent-mode)
-;;   :diminish aggressive-indent-mode)
 
 ;; Languages
 ;; python
@@ -279,15 +277,17 @@
     (add-to-list 'company-backends '(company-jedi))
     )
 
+  (setq python-indent 4) 
+
   ;; temp fix for error message
-  (defun python-shell-completion-native-try ()
-    "Return non-nil if can trigger native completion."
-    (let ((python-shell-completion-native-enable t)
-	  (python-shell-completion-native-output-timeout
-	   python-shell-completion-native-try-output-timeout))
-      (python-shell-completion-native-get-completions
-       (get-buffer-process (current-buffer))
-       nil "_")))
+  ;; (defun python-shell-completion-native-try ()
+  ;;   "Return non-nil if can trigger native completion."
+  ;;   (let ((python-shell-completion-native-enable t)
+  ;; 	  (python-shell-completion-native-output-timeout
+  ;; 	   python-shell-completion-native-try-output-timeout))
+  ;;     (python-shell-completion-native-get-completions
+  ;;      (get-buffer-process (current-buffer))
+  ;;      nil "_")))
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   )
