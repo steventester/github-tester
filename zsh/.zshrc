@@ -81,8 +81,8 @@ function minimal_vcs {
 ##############
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
-PS1='%(?..[${PR_LIGHT_RED}%?$PR_NO_COLOR])%(!.${PR_LIGHT_RED}#.${PR_LIGHT_GREEN}>) '
-RPS1='$(minimal_vcs) %(!.${PR_RED}%2c.${PR_BLUE}%2c)$PR_NO_COLOR'
+PS1='%(?..[${PR_LIGHT_RED}%?$PR_NO_COLOR])%(!.${PR_LIGHT_RED}#.${PR_LIGHT_GREEN}->) '
+RPS1='$(minimal_vcs) %(!.${PR_RED}%3c.${PR_BLUE}%3c)$PR_NO_COLOR'
 unsetopt ALL_EXPORT
 
 
@@ -189,7 +189,6 @@ zstyle '*' single-ignored show
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/ansiweather/ansiweather.plugin.zsh
-
 
 ### Configure zsh-autosuggest
 bindkey '^ ' autosuggest-accept

@@ -1,0 +1,7 @@
+.backups/
+.custom.el
+.historian
+company-statistics-cache.el
+elpa/
+recentf
+smex-items
