@@ -1,7 +1,7 @@
 URxvt*scrollBar_right: true
 URxvt*scrollstyle: plain
 
-#define font     xft:xos4 Terminus:pixelsize=11:antialias=false:style=Regular 
+#define font     xft:xos4 Terminus:pixelsize=11:anti-aliasing=false:style=Regular 
 URxvt.font:           font
 URxvt.boldFont:       font
 URxvt.italicFont:     font

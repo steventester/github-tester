@@ -84,46 +84,63 @@
     )
   :diminish company-mode)
 
-
-(use-package ivy
+(use-package helm
+  :diminish helm-mode
   :ensure t
+  :init
+  (progn
+    (require 'helm-config)
+    (setq helm-candidate-number-limit 100)
+    ;; From https://gist.github.com/antifuchs/9238468
+    (setq 
+      helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
+      helm-input-idle-delay 0.01  ; this actually updates things
+                                       ; reeeelatively quickly.
+      helm-yas-display-key-on-candidate t
+      helm-quick-update t
+      helm-M-x-requires-pattern nil
+      helm-ff-newfile-prompt-p nil
+      helm-ff-skip-boring-files t
+     
+     ;; Helm fuzzy settings 
+      helm-recentf-fuzzy-match t
+      helm-locate-fuzzy-match nil ;; locate fuzzy is worthless
+      helm-M-x-fuzzy-match t
+      helm-buffers-fuzzy-matching t
+      helm-semantic-fuzzy-match t
+      helm-apropos-fuzzy-match t
+      helm-imenu-fuzzy-match t
+      helm-lisp-fuzzy-completion t
+      helm-completion-in-region-fuzzy-match t	  
+
+      helm-autoresize-min-height 10
+      helm-autoresize-max-height 35
+	  
+      )
+   )
   :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-height 10)
-  (setq ivy-count-format "")
-  ;; no regexp by default
-  (setq ivy-initial-inputs-alist nil)
-  ;; configure regexp engine.
-  (setq ivy-re-builders-alist
-	;; allow input not in order
-        '((t   . ivy--regex-ignore-order)))
-
-  (use-package ivy-historian
-    :ensure t
-    :config 
-    (ivy-historian-mode)
-    )
-
-  (use-package swiper
-    :ensure t
-    :diminish swiper-mode)
-
-  (use-package counsel-projectile
+  (helm-mode 1)
+  (helm-autoresize-mode 1)
+  (use-package helm-swoop
     :ensure t)
-
-  (use-package counsel
-    :ensure t
-    :bind (("M-x" . counsel-M-x)
-	   ("C-x C-f" . counsel-find-file)
-	   ("C-x C-b" . ivy-switch-buffer)
-	   ("C-x C-r" . counsel-recentf) 
-	   ("C-x C-g" . counsel-git-grep)
-	   ("C-x C-p" . counsel-projectile)
-	   ("C-s" . swiper)
-	   )
-    :diminish counsel-mode)
-:diminish ivy-mode)
+	     
+  :bind (:map helm-find-files-map
+              ("<tab>" . helm-execute-persistent-action)
+	      ("C-z" . helm-select-action)
+              ("C-<backspace>" . helm-find-files-up-one-level))
+  :bind (
+         ("M-x" . helm-M-x)
+	 ("C-x C-m" . helm-mini)
+         ("C-x C-b" . helm-buffers-list)
+	 ("C-x C-f" . helm-find-files)
+	 ("C-x C-r" . helm-recentf)
+	 ("C-x C-g" . helm-grep-do-git-grep)
+         ("C-s" . helm-swoop)
+	 ("C-x C-i" . helm-semantic-or-imenu)
+	 ("C-x C-u" . helm-resume )
+         )
+ 
+  )
 
 ;; vim emulation
 (use-package evil
@@ -139,8 +156,8 @@
     (evil-leader/set-leader ",")
     (evil-leader/set-key 
       "SPC" 'evil-search-highlight-persist-remove-all
-      "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-      "," 'counsel-M-x
+      "cl" 'evilnc-comment-or-uncomment-lines
+      "," 'helm-M-x
       )
     )
   (use-package evil-surround
@@ -233,6 +250,11 @@
   :ensure t
   :defer t
   :commands (git-timemachine))
+
+(use-package fzf
+  :ensure t
+  )
+
 
 ;; Don't use this for now
 ;; (use-package aggressive-indent
