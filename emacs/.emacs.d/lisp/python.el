@@ -12,7 +12,6 @@
     (add-to-list 'company-backends '(company-jedi))
     )
 
-  (setq python-indent 4)
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   )
