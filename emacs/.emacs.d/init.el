@@ -53,10 +53,6 @@
 
 
 
-  (bind-key "C-n" 'company-select-next company-active-map)
-  (bind-key "C-p" 'company-select-previous company-active-map)
-  (bind-key "<tab>" 'company-complete-common company-active-map)
-
   (use-package company-statistics
     :ensure t
     :config 
@@ -65,11 +61,34 @@
     :ensure t
     :config
     (company-quickhelp-mode))
+  :bind
+  (
+   :map company-mode-map
+	("<tab>" . company-complete-common)
+	:map company-active-map
+	("C-n" . company-select-next)
+	("C-p" . company-select-previous)
+	)
   :diminish company-mode)
 
 
+(use-package buffer-move
+  :ensure t
+  :config
+(global-set-key (kbd "C-S-k")     'buf-move-up)
+(global-set-key (kbd "C-S-j")   'buf-move-down)
+(global-set-key (kbd "C-S-h")   'buf-move-left)
+(global-set-key (kbd "C-S-l")  'buf-move-right)
+)
 
-
+(use-package windmove
+  :defer 2
+  :bind (("M-h" . windmove-left)
+	 ("M-j" . windmove-down)
+	 ("M-k" . windmove-up)
+	 ("M-l" . windmove-right)
+	 )
+  )
 (ivy-config)
 
 ;; vim emulation
