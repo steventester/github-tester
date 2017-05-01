@@ -29,6 +29,14 @@
   :ensure t
 )
 
+
+(use-package switch-window
+  :ensure t
+  :config
+  (bind-key "C-x o" 'switch-window)
+  )
+
+
 (use-package company	
   :ensure t
   :defer 2 
@@ -42,8 +50,12 @@
    company-tooltip-limit           20
    company-dabbrev-downcase        nil
    )
-  (define-key company-active-map (kbd "<tab>") 'company-select-next)
-  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+
+
+
+  (bind-key "C-n" 'company-select-next company-active-map)
+  (bind-key "C-p" 'company-select-previous company-active-map)
+  (bind-key "<tab>" 'company-complete-common company-active-map)
 
   (use-package company-statistics
     :ensure t
@@ -56,12 +68,7 @@
   :diminish company-mode)
 
 
-(use-package yasnippet
-  :ensure t
-  :init
-    (yas-global-mode 1)
-  :diminish yas-minor-mode
-    )
+
 
 (ivy-config)
 
