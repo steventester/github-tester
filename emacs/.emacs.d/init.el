@@ -61,13 +61,22 @@
     :ensure t
     :config
     (company-quickhelp-mode))
+
+  (defun my-company-active-return ()
+    (interactive)
+    (if (company-explicit-action-p)
+        (company-complete)
+      (call-interactively
+         (or (key-binding (this-command-keys))
+             (key-binding (kbd "RET")))
+    )))
   :bind
   (
-   :map company-mode-map
-	("<tab>" . company-complete-common)
 	:map company-active-map
-	("C-n" . company-select-next)
-	("C-p" . company-select-previous)
+	("<tab>" . company-select-next)
+	("<backtab>" . company-select-previous)
+	("<return>" . my-company-active-return)
+	("RET" . my-company-active-return)
 	)
   :diminish company-mode)
 
@@ -82,7 +91,6 @@
 )
 
 (use-package windmove
-  :defer 2
   :bind (("M-h" . windmove-left)
 	 ("M-j" . windmove-down)
 	 ("M-k" . windmove-up)
