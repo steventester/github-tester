@@ -8,9 +8,6 @@ if [ -f $HOME/.Xresources ]; then
     /usr/bin/xrdb $HOME/.Xresources
 fi
 
-xsetroot -cursor_name left_ptr
 mpd &
-# nm-applet &
-sxhkd & 
 urxvt &
-exec bspwm
+exec i3
