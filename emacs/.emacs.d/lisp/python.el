@@ -13,10 +13,7 @@
     )
 
   (use-package yapfify
-    :ensure t
-    :config
-    (yapf-mode)
-    :diminish yapf-mode)
+    :ensure t)
 
   (use-package py-isort
     :ensure t
@@ -25,10 +22,7 @@
   )
 
   (use-package py-autopep8
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-    )
+    :ensure t)
 
 
   :mode ("\\.py\\'" . python-mode)

@@ -67,16 +67,16 @@
     (if (company-explicit-action-p)
         (company-complete)
       (call-interactively
-         (or (key-binding (this-command-keys))
-             (key-binding (kbd "RET")))
-    )))
+       (or (key-binding (this-command-keys))
+	   (key-binding (kbd "RET")))
+       )))
   :bind
   (
-	:map company-active-map
+   :map company-active-map
 	("<tab>" . company-select-next)
 	("<backtab>" . company-select-previous)
-	("<return>" . my-company-active-return)
-	("RET" . my-company-active-return)
+	;; ("<return>" . my-company-active-return)
+	;; ("RET" . my-company-active-return)
 	)
   :diminish company-mode)
 
