@@ -1,15 +1,30 @@
-;;; package --- summary:
+;;; init.el --- emacs configuration
 ;;; Commentary:
 ;;; Code:
 
-;; Initialize use-package
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'load-path (expand-file-name "packages" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (package-initialize)
 
+(setq load-prefer-newer t)              ; Always load newer compiled files
+(setq ad-redefinition-action 'accept)   ; Silence advice redefinition warnings
+(setq message-log-max 1000)
 
+;; Allow more than 800Kb cache during init
+(setq gc-cons-threshold 50000000)
+
+;; Reset threshold to its default after Emacs has startup, because a large
+;; GC threshold equates to longer delays whenever GC happens
+(defun yw-set-gc-threshold ()
+  "Reset `gc-cons-threshold' to its default value."
+  (setq gc-cons-threshold 800000))
+(add-hook 'emacs-startup-hook 'yw-set-gc-threshold)
+
+;; Install use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -19,200 +34,93 @@
 (require 'diminish)
 (require 'bind-key)
 
-;;; Load files in lisp folder
-(cl-loop for file in (directory-files ".emacs.d/lisp" t)
-	 when (string-match "\\.el$" file)
-	 do (load file))
-
-;; Packages
-(use-package zenburn-theme
-  :ensure t
-)
-
-
-(use-package switch-window
-  :ensure t
-  :config
-  (bind-key "C-x o" 'switch-window)
-  )
-
-
-(use-package company	
-  :ensure t
-  :defer 2 
-  :init 
-  (add-hook 'prog-mode-hook 'company-mode)
-  :config
-  (setq 
-   company-idle-delay              0.15
-   company-minimum-prefix-length   1
-   company-selection-wrap-around   t
-   company-tooltip-limit           20
-   company-dabbrev-downcase        nil
-   )
-
-
-
-  (use-package company-statistics
-    :ensure t
-    :config 
-    (company-statistics-mode))
-  (use-package company-quickhelp
-    :ensure t
-    :config
-    (company-quickhelp-mode))
-
-  (defun my-company-active-return ()
-    (interactive)
-    (if (company-explicit-action-p)
-        (company-complete)
-      (call-interactively
-       (or (key-binding (this-command-keys))
-	   (key-binding (kbd "RET")))
-       )))
-  :bind
-  (
-   :map company-active-map
-	("<tab>" . company-select-next)
-	("<backtab>" . company-select-previous)
-	;; ("<return>" . my-company-active-return)
-	;; ("RET" . my-company-active-return)
-	)
-  :diminish company-mode)
-
-
-(use-package buffer-move
-  :ensure t
-  :config
-(global-set-key (kbd "C-S-k")     'buf-move-up)
-(global-set-key (kbd "C-S-j")   'buf-move-down)
-(global-set-key (kbd "C-S-h")   'buf-move-left)
-(global-set-key (kbd "C-S-l")  'buf-move-right)
-)
-
-(use-package windmove
-  :bind (("M-h" . windmove-left)
-	 ("M-j" . windmove-down)
-	 ("M-k" . windmove-up)
-	 ("M-l" . windmove-right)
-	 )
-  )
-(ivy-config)
-
-;; vim emulation
-(use-package evil
-  :ensure t
-  :config
-  (evil-mode 1)
-  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-  (use-package evil-leader
-    :ensure t
-    :config
-    (global-evil-leader-mode)
-    (evil-leader/set-leader ",")
-    (evil-leader/set-key 
-      "SPC" 'evil-search-highlight-persist-remove-all
-      "cl" 'evilnc-comment-or-uncomment-lines
-      "," 'counsel-M-x
-      )
-    )
-  (use-package evil-surround
-    :ensure t
-    :config
-    (global-evil-surround-mode))
-  (use-package evil-nerd-commenter
-    :ensure t)
-  (use-package evil-escape
-    :ensure t
-    :diminish evil-escape-mode
-    :config
-    (evil-escape-mode)
-    (setq-default evil-escape-key-sequence "jk"))
-  (use-package evil-search-highlight-persist
-    :ensure t
-    :config
-    (require 'highlight)
-    (global-evil-search-highlight-persist t))
-  (use-package evil-matchit
-    :ensure t
-    :config
-    (global-evil-matchit-mode 1))
-  (use-package evil-mc
-    :ensure t
-    :diminish evil-mc-mode
-    :config
-    ;;  (global-evil-mc-mode 1)
-    )
-  )
-
-(use-package undo-tree
-  :diminish undo-tree-mode)
-
-(use-package flycheck
-  :ensure t
-  :defer 5
-  :config
-  )
-
-(use-package nlinum-relative
-  :ensure t
-  :defer 2
-  :config
-  (nlinum-relative-setup-evil)
-  (add-hook 'prog-mode-hook 'nlinum-relative-mode))   
-
-(use-package smart-mode-line
-  :ensure t
-  :defer 2
-  :config
-  (setq sml/no-confirm-load-theme t)
-  (setq sml/theme 'respectful)
-  (sml/setup))
-
-(use-package magit
-  :ensure t
-  :defer 3
-  :diminish magit-mode)
-
-(use-package projectile
-  :ensure t
-  :commands (projectile-mode)
-  :diminish projectile-mode)
-
-(use-package eldoc
-  :ensure t
-  :defer 2 
-  :config
-  (global-eldoc-mode)
-  :diminish eldoc-mode)
-
-(use-package smooth-scrolling
-  :ensure t
-  :defer 5
-  :config
-  (smooth-scrolling-mode)
-  :diminish smooth-scrolling-mode)
-
-(use-package git-timemachine
-  :ensure t
-  :defer t
-  :commands (git-timemachine))
-
-(use-package aggressive-indent
-  :ensure t
-  :config
-  (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-  (add-hook 'prog-mode-hook #'aggressive-indent-mode)
-  :diminish aggressive-indent-mode)
-
-(use-package rg
+;; Validate
+(use-package validate
   :ensure t)
-;;; End of usepackage
 
-;; customizations
-(emacs-config)
-(haskell-config)
-(python-config)
-(latex-config)
-(markdown-config)
+;; Backups
+(validate-setq
+ backup-directory-alist '((".*" . "~/.emacs.d/backup"))
+ version-control        t          ; Version number for backup files
+ delete-old-versions    t
+ backup-by-copying      t
+ kept-new-versions      5
+ kept-old-versions      0
+ vc-make-backup-files   t
+)
+
+(validate-setq
+ auto-save-list-file-prefix     "~/.emacs.d/autosave/"
+ auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t)))
+
+;; Dont litter my init.el
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'noerror)
+
+;; Some global key remaps
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+;;; Naked Emacs Section --
+(blink-cursor-mode 0) ;; no blinking cursor
+
+;; Don't use messages that you don't read
+(validate-setq initial-scratch-message ""
+	       inhibit-startup-message t
+	       inhibit-startup-echo-area-message "yiqiao")
+
+;; remove toolbars and menus
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+
+;; fonts & themes
+;; Other decent themes:
+;; Leuven
+;; Kaolin
+(use-package nord-theme
+  :ensure t)
+
+(validate-setq
+ initial-frame-alist '((font . "xos4 Terminus-10"))
+ default-frame-alist '((font . "xos4 Terminus-10")))
+
+;; Misc
+(global-eldoc-mode)
+(show-paren-mode)
+(fset 'yes-or-no-p 'y-or-n-p) ;; change yes no prompts to y n
+(global-auto-revert-mode)
+(put 'dired-find-alternate-file 'disabled nil)
+(validate-setq
+ confirm-kill-emacs #'y-or-n-p
+ vc-follow-symlinks t ; Follow symlinks to their actual file
+ tab-width 4
+ show-paren-delay 0)
+(setq-default major-mode 'org-mode)
+(setq-default initial-major-mode 'org-mode)
+
+
+;;; Packages
+;; Local
+;(global-set-key (kbd "M-r") 'resize-window)
+(use-package resize-window
+  :bind
+    ("M-r" . resize-window))
+
+;; Remote
+(use-package yw-evil)
+(use-package yw-git-timemachine)
+(use-package yw-markdown)
+(use-package yw-smooth-scrolling)
+(use-package yw-company)
+(use-package yw-haskell)
+(use-package yw-nlinum-relative)
+(use-package yw-telephone-line)
+(use-package yw-ivy)
+(use-package yw-projectile)
+(use-package yw-tex)
+(use-package yw-flycheck)
+(use-package yw-magit)
+(use-package yw-python)
+; (use-package yw-aggressive-indent)
+(use-package yw-undo-tree)
+(use-package yw-ranger)

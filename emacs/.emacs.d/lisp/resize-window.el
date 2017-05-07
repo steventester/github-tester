@@ -108,10 +108,10 @@ Main data structure of the dispatcher with the form:
 \(char function documentation match-capitals\)")
 
 (defvar resize-window-alias-list
-  '((right ?f)
-    (up ?n)
-    (left ?b)
-    (down ?p))
+  '((right ?h)
+    (up ?k)
+    (left ?l)
+    (down ?j))
   "List of aliases for commands.
 Rather than have to use n, etc, you can alias keys for others.")
 
