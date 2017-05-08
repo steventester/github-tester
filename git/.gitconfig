@@ -1,0 +1,8 @@
+[push]
+	default = current
+[user]
+	email = yiqiao.wang96@gmail.com
+	name = Yi Qiao Wang
+	signingkey = 7D9C679370A6FF1A
+[commit]
+	gpgsign = true
