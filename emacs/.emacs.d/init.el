@@ -101,7 +101,6 @@
 
 ;;; Packages
 ;; Local
-;(global-set-key (kbd "M-r") 'resize-window)
 (use-package resize-window
   :bind
     ("M-r" . resize-window))
