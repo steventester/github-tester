@@ -77,6 +77,16 @@ function minimal_vcs {
 
 
 
+### Ipython if exists
+ipython_wrapper() {
+    if which ipython >/dev/null 2>&1; then
+        ipython "$@"
+    else
+        python "$@"
+    fi
+}
+
+
 ### Set prompt
 ##############
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
@@ -92,6 +102,7 @@ alias ll='ls -al'
 alias ls='ls --color=auto '
 alias clip='xclip -selection clip'
 alias nv='nvim'
+alias python=ipython_wrapper
 
 ### Bind keys
 #############
